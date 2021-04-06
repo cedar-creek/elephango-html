@@ -1,0 +1,432 @@
+$( document ).ready(function() {
+	
+	// Open navbarSide when button is clicked
+	$('.mobile-btn').on('click', function() {
+		$('.mobile-nav').addClass('reveal');
+		$('.overlay').show();
+	});
+
+	// Close navbarSide when the outside of menu is clicked
+	$('.overlay').on('click', function(){
+		$('.mobile-nav').removeClass('reveal');
+		$('.overlay').hide();
+	});
+	
+	if($('.Search-results').length) {
+		filters = new SearchAPI;
+		filters.Init();
+	}
+	
+
+	
+	// Stops the dropdown close event on click
+	$('body').on('click', '.dropdown-menu a.dontclose', function(e) {
+		e.stopPropagation();
+	});
+	
+});
+
+
+
+function SearchAPI() {
+	var _this = this;
+	_this.QueryString;
+	_this.QueryStringArr = [];
+	_this.SearchParameter = "srch";
+	_this.SearchValue;
+	_this.CountPage = 2;
+	_this.ScrollBottomOffset = 0;
+	_this.ItemsPageCount = 24;
+	_this.Flag = false;
+	_this.LastPage = false;
+	_this.RecordsFound = $('.recordsFound').html();
+	_this.SearchUrl = location.protocol + '//' + location.host + location.pathname;
+	_this.inputSelector = $('input[type="checkbox"], input[type="radio"]');
+	_this.SearcFormSelector = $('form[name="frmSearch"]');
+	_this.SearchInputSelector = $('#srch');
+	_this.ClearFiltersBtnSelector = $('.clear-filters');
+	_this.LoadMoreBtnHtml = '<a class="loadMore" href="#">Load more...</a>';
+	_this.LoadMoreBtn = $('.loadMore');
+	_this.AjaxURL = '/pages/public/ajaxSearch.cfm?returnType=json';
+	_this.AjaxURLBadges = '/pages/member/ajaxSearchBadge.cfm?returnType=json';
+	_this.AjaxUrlMember = '/pages/member/ajaxSearch.cfm?returnType=json';
+	_this.Auth = userLoggedin;
+	
+	if(_this.Auth) {
+		_this.AjaxURL = _this.AjaxUrlMember;
+	}
+	
+	_this.searchType = function() {
+		var searchParams = new URLSearchParams(_this.QueryString);
+		var searchType = searchParams.get('search_type');
+		var searchURL = _this.AjaxURL;
+		if (searchType == 'badges') {
+			$('.srchCatLessons').hide();
+			$('.srchCatBadges').show();
+			$('.filter-box').eq(4).hide();
+			$('.filter-box').eq(5).hide();
+			$('.filter-box').eq(6).hide();
+			$('.filter-box').eq(7).hide();
+			$('.filter-box').eq(8).hide();
+		} else {
+			$('.srchCatLessons').show();
+			$('.srchCatBadges').hide();
+			$('.filter-box').eq(4).show();
+			$('.filter-box').eq(5).show();
+			$('.filter-box').eq(6).show();
+			$('.filter-box').eq(7).show();
+			$('.filter-box').eq(8).show();
+		}
+	}
+	
+	//buildURL builds the URL query string for all the radio and checkbox inputs
+	_this.buildURL = function(badgesChange) {
+		_this.QueryStringArr = [];
+		_this.QueryStringArr[_this.SearchParameter] = [_this.SearchValue];
+		_this.inputSelector.each(function (i) {
+			if (this.checked) {
+				if (!_this.QueryStringArr.hasOwnProperty(this.name)) {
+					_this.QueryStringArr[this.name] = [];
+				}
+				_this.QueryStringArr[this.name].push(this.value);
+			}
+		});
+		
+		if (badgesChange) {
+			delete _this.QueryStringArr['category'];
+		}
+
+		var keys = Object.keys(_this.QueryStringArr);
+		_this.QueryString = "";
+	
+
+		keys.forEach(function(key,i){
+
+			if (i > 0) _this.QueryString += '&';
+			_this.QueryString += key+"="+_this.QueryStringArr[key].join(',');
+		});
+		
+		_this.searchType();
+		//console.log(data);
+	}
+	
+	
+	// getURLParameter returns the value from the url by parameter name
+	_this.getURLParameter = function(name) {
+		return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+	}
+	
+	// onSearchSbumit fires when the search form is submited
+	_this.onSearchSbumit = function(name) {
+		_this.SearcFormSelector.on('submit', function( e ) {
+			e.preventDefault();
+			if (_this.SearchInputSelector.val() == "") {
+				alert("Please type something inside the search box!");
+				return;
+			}
+			$(this)[0].submit();
+		});
+	}
+	
+	
+	// pushState gets the query string from the URL
+	// It returns and array with the query names and an associative array with the query name and value
+	_this.GetUrlVars = function() {
+		var vars = {name: [], query: []}, hash;
+		var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+		if(hashes[0] == _this.SearchUrl) {
+			return;
+		}
+		for(var i = 0; i < hashes.length; i++) {
+			hash = hashes[i].split('=');
+			vars.name.push(hash[0]);
+			vars.query[hash[0]] = hash[1].split(',');
+		}
+		return vars;
+	}
+	
+	// ResetFilters resets all the filters
+	_this.ResetFilters = function() {
+		_this.inputSelector.not('input[name="sortby"], input[name="search_type"]').prop("checked", false);
+		$('.custom-radio input[value="best"]').prop("checked", true)
+	}
+	
+	// renderFilters renders the filters state based on the URL query string
+	_this.renderFilters = function() {
+		_this.ResetFilters();
+		if(_this.GetUrlVars() == null) {
+			return;
+		}
+		var queryName = _this.GetUrlVars().name;
+		var queryURL = _this.GetUrlVars().query;
+		
+		
+		for(var i = 0; i < queryName.length; i++) {
+			$('input[name="'+queryName[i]+'"]').each(function (index) {
+				var value = $(this).val();
+				var queryValue = queryURL[queryName[i]];
+				for(var j = 0; j < queryValue.length; j++) {
+					
+					if(value == queryValue[j]) {
+						$('input[value="'+queryValue[j]+'"]').prop("checked", true);
+					}
+				}
+			});
+		}
+	}
+	
+	
+	// onpopstate fires on you go back or forward inside the browser
+	_this.onPopstate = function() {
+		window.onpopstate =  function(event) {
+			_this.renderFilters();
+			_this.buildURL(false);
+			if(event.state == null) {
+				_this.AjaxSearch(false);
+			} else {
+				var parsed = $.parseHTML(event.state);
+				$('.Three-columns').html(parsed);
+			}
+			
+		}
+	}
+	
+	// onChange checks for any input change and then it rebuilds the query string
+	_this.onChange = function() {
+		_this.inputSelector.on('change', function (e) {
+			if(!_this.Auth) {
+				_this.AuthPopup();
+				_this.ResetFilters();
+				return;
+			}
+				
+			var badgesChange = false;
+			if ($(this).val() == 'badges' || $(this).val() == 'lessons') {
+				badgesChange = true;
+			}
+			
+			_this.buildURL(badgesChange);
+			_this.AjaxSearch(false);
+		});
+	}
+	
+	// onResetFilters fires when the reset button is clicked
+	_this.onResetFilters = function() {
+		_this.ClearFiltersBtnSelector.on('click', function(e) { 
+			e.preventDefault();
+			if(_this.GetUrlVars().name.length < 3) {
+				return;
+			}
+			_this.ResetFilters();
+			_this.buildURL(false);
+			_this.AjaxSearch(false);
+		});
+	}
+	
+	_this.onLoadMore = function() {
+		$('body').on('click', '.loadMore', function(e) { 
+			e.preventDefault();
+			if (_this.Flag || _this.LastPage || _this.RecordsFound <= _this.ItemsPageCount) {
+				$('.loadMore').remove();
+				return;
+			}
+			_this.buildURL(false);
+			_this.AjaxSearch(true);
+		});
+	}
+	
+	//onSearchScroll fires when you scroll on the bottom of the page
+	_this.onSearchScroll = function() {
+		//$('body').prepend('<div class="scrollSize" style="position:fixed;top:0; height:50px; width:200px; text-align:center;"></div>');
+		if(_this.Auth) {
+			if(!$('.Search-results').length) {
+				return;
+			}
+			var win = $(window);
+			$(window).on('scroll touchmove gesturechange', function() {
+
+				if (_this.Flag || _this.LastPage || _this.RecordsFound <= _this.ItemsPageCount) {
+					$('.loadMore').remove();
+					return;
+				}
+				var scrollHeight = $(document).height();
+				var scrollPosition = win.height() + win.scrollTop();
+				if ((scrollHeight - scrollPosition) / scrollHeight === _this.ScrollBottomOffset) {
+					_this.Flag = true;
+					_this.buildURL(false);
+					_this.AjaxSearch(true);
+				}
+				//$('.scrollSize').text(scrollPosition+" "+scrollHeight);
+			});
+		}
+	}
+	
+	_this.AuthPopup = function() {
+		//$.fancybox.open('<div class="message"><h2>Hello!</h2><p>Please login in order to have access to this area of the website.</p></div>');
+		$.fancybox.open({
+			 padding : 0,
+			 src:'/pages/public/dsp_joinPopup.cfm',
+			 type: 'iframe',
+			 toolbar  : false,
+			 smallBtn : true,
+			 buttons : [
+			  'close'
+			   ],
+			  iframe : {
+			  	css : {
+			   		width : '480px'
+			  	},
+		 	}
+		});
+	}
+	
+	_this.PushHistory = function(data) {
+		if (history.pushState) {
+			history.pushState(data, null, _this.SearchUrl + '?' + _this.QueryString);
+		}
+	}
+	
+	// AjaxSearch returns the search results and prints them on the screen
+	_this.AjaxSearch = function(scrollBool) {
+		$('.lds-css').remove();
+		//$('body').append('<div class="lds-css"><div style="width:100%;height:100%" class="lds-pacman"><div><div></div><div></div><div></div> </div> <div> <div></div> <div></div></div> </div></div>');
+		$('body').append('<div class="lds-css"><div style="width:100%;height:100%" class="lds-elephant"></div></div>');
+		if(scrollBool) {
+			_this.QueryString = _this.QueryString+'&pageCount='+_this.CountPage;
+		}
+		var searchParams = new URLSearchParams(_this.QueryString);
+		var searchType = searchParams.get('search_type');
+		var searchURL = _this.AjaxURL;
+		if (searchType == 'badges') {
+			searchURL = _this.AjaxURLBadges;
+		}
+		
+		$.ajax({
+		type:"GET",
+		url: searchURL,
+			data: _this.QueryString,
+			success: function(data) {
+				$('.lds-css').remove();
+				if(data.RESULTS.LASTPAGE == 1 && scrollBool) {
+					_this.LastPage = true;
+					$('.loadMore').remove();
+				}
+				
+				if(data.RESULTS.ITEMCOUNT == 0 && scrollBool) {
+					return;
+				}
+				if(scrollBool) {	
+					$('.Three-columns').append(data.RESULTS.CONTENT);
+					_this.CountPage++;
+					_this.Flag = false;
+					return;
+				}
+				var parsed = $.parseHTML(data.RESULTS.CONTENT+_this.LoadMoreBtnHtml);
+				$('.Three-columns').html(parsed);
+				if(!scrollBool) {
+					_this.PushHistory(data.RESULTS.CONTENT);
+				}
+			},
+			dataType: 'json',
+			error: function (jqXHR, exception) {
+				var msg = '';
+				if (jqXHR.status === 0) {
+					msg = 'Not connect.\n Verify Network.';
+				} else if (jqXHR.status == 404) {
+					msg = 'Requested page not found. [404]';
+				} else if (jqXHR.status == 500) {
+					msg = 'Internal Server Error [500].';
+				} else if (exception === 'parsererror') {
+					msg = 'Requested JSON parse failed.';
+				} else if (exception === 'timeout') {
+					msg = 'Time out error.';
+				} else if (exception === 'abort') {
+					msg = 'Ajax request aborted.';
+				} else {
+					msg = 'Uncaught Error.\n' + jqXHR.responseText;
+				}
+				alert(msg);
+			}
+		  });
+	}
+	
+	
+	_this.viewResource = function(ID,SRCH,NAME){
+		_this.buildURL(false)
+		console.log(_this.QueryString, ID);
+		$.ajax({
+		type:"POST",
+		url:'/pages/member/ajaxSearchHistory.cfm',
+			data: {id: ID, vars: _this.QueryString},
+			success: function(data) {
+				//console.log(data);
+				if(SRCH == ''){
+					window.location.href = 'index.cfm/pg/resource/lcid/'+ID+'/'+NAME;
+				}else{
+					window.location.href = 'index.cfm/pg/resource/lcid/'+ID+'/srch/'+SRCH+'/'+NAME;
+				}
+			},
+			dataType: 'text', //html json xml text
+			error: function (jqXHR, exception) {
+				var msg = '';
+				if (jqXHR.status === 0) {
+					msg = 'Not connect.\n Verify Network.';
+				} else if (jqXHR.status == 404) {
+					msg = 'Requested page not found. [404]';
+				} else if (jqXHR.status == 500) {
+					msg = 'Internal Server Error [500].';
+				} else if (exception === 'parsererror') {
+					msg = 'Requested JSON parse failed.';
+				} else if (exception === 'timeout') {
+					msg = 'Time out error.';
+				} else if (exception === 'abort') {
+					msg = 'Ajax request aborted.';
+				} else {
+					msg = 'Uncaught Error.\n' + jqXHR.responseText;
+				}
+				
+				if(SRCH == ''){
+					window.location.href = 'index.cfm/pg/resource/lcid/'+ID+'/'+NAME;
+				}else{
+					window.location.href = 'index.cfm/pg/resource/lcid/'+ID+'/srch/'+SRCH+'/'+NAME;
+				}
+				//window.location.href = 'index.cfm/pg/resource/lcid/'+ID;
+                console.log(msg);
+			}
+		  });
+		
+	 } 
+	 
+	 
+	 
+	 _this.clickViewResource = function(){
+	 	$('.Search-results').on('click', '.clickResource', function(e) {
+			e.preventDefault();
+			var ID = $(this).data('id')
+			var SRCH = $(this).data('filter')
+			var NAME = $(this).data('name')
+			_this.viewResource(ID,SRCH,NAME)
+		})
+	 }
+	
+	
+	
+	// Init initalises all the methods in the class
+	_this.Init = function() {
+		if(_this.RecordsFound > _this.ItemsPageCount) {
+			$('.Three-columns').append(_this.LoadMoreBtnHtml);
+		}
+		_this.onLoadMore();
+		_this.onSearchSbumit();
+		_this.onResetFilters();
+		_this.SearchValue = _this.getURLParameter(_this.SearchParameter);
+		_this.renderFilters();
+		_this.onChange();
+		_this.onSearchScroll();
+		_this.onPopstate();
+		_this.clickViewResource();
+		_this.buildURL(false);
+		_this.searchType();
+	}
+}
+

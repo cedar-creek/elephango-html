@@ -1,0 +1,787 @@
+@media (max-width: 575px) {
+	.myAchievementBox .count {
+		line-height:1;
+		font-size: 120px;
+	}
+	.myAchievementBox .text {
+		font-size:1.4rem;
+	}
+    .Topbar, .signup, .Highlight-boxes .square-img {
+        display:none;
+    }
+    .Header {
+        background:#f6f7f9;
+    }
+	.Public .Header {
+		padding-top: 1.5rem!important;
+    }
+     .Header .nav-container {
+        display:none!important;
+    }
+    .Header .logo-container {
+        order:1;
+        flex-basis:35%!important;
+        margin-right:auto;
+    }
+    .Header .mobile-btn {
+        order:3;
+    }
+    .Header .search-container {
+        flex-basis:100%!important;
+        order:3!important;
+        margin-top:0.7rem;
+    }
+    .Slider {
+        height:250px;
+    }
+	
+    .Public .Header .nav-container {
+        display:block!important;
+        width:100%;
+    }
+    .Highlight-boxes .box {
+        text-align:left;
+    }
+    .Highlight-boxes .h5-title {
+        margin-bottom:0!important;
+    }
+    .Four-schools .box {
+		margin-bottom:10px;
+    }
+    .Imagine-discover .arch-border {
+        width: 300%;
+        left: -100%;
+    }
+    .Imagine-discover .Three-columns {
+        width:70%;
+        margin:0 auto;
+    }
+    .Imagine-discover .Three-columns .box {
+        margin-bottom:1rem;
+    }
+    .Imagine-discover {
+        margin-bottom:2rem!important;
+        text-align:center;
+    }
+    .Imagine-discover.Orange-boxes .Three-columns{
+        width:100%;
+    }
+    .Orange-boxes .fa-quote-left {
+        left:0;
+    }
+    .Orange-boxes .fa-quote-right {
+        right:0;
+    }
+    .Imagine-discover.Orange-boxes {
+        margin-bottom:0!important;
+    }
+    .Imagine-discover.Orange-boxes .Three-columns .box {
+        margin-bottom:5rem;
+    }
+    .Imagine-discover.Orange-boxes .Three-columns .box:last-child {
+        margin-bottom:0;
+    }
+    .Imagine-discover.Orange-boxes .quote-name {
+        margin-top:1rem!important;
+    }
+    .Orange-boxes.Imagine-discover .relative-inner {
+            padding-bottom: 5rem;
+    }
+    .Philosophy {
+        padding-top: 1rem;
+    }
+    .Philosophy  .elephant {
+        position:static;
+        margin-bottom:2rem;
+    }
+    .Philosophy .w-70 {
+        width:100%;
+    }
+    .Education .Three-columns, .Imagine-discover.Orange-boxes .Three-columns .box {
+        margin-left:-15px;
+        margin-right:-15px;
+    }
+    .Ten-columns .box {
+        flex-basis: 24%;
+    }
+    .Philosophy .start-now-btn {
+        font-size: 1.6rem;
+        padding: 0.8rem 13%;
+    }
+    .Philosophy .start-now {
+        bottom: -18px;
+    }
+    .SubSlider {
+        background: #feb835;
+    }
+    .SubSlider .h1-title {
+        font-size:1.2rem;
+        color:#fff;
+        font-weight:bold;
+        line-height:1.5;
+    }
+    .blue-btn {
+        background: #245ea5;
+    }
+    .SubSlider .action-btn {
+        display:block;
+        width:70%;
+        margin:0 auto;
+    }
+    .Four-schools {
+        padding-bottom:10px!important;
+    }
+    .Highlight-boxes {
+        padding-top:2rem!important;
+        padding-bottom:4rem!important;
+    }
+    .Features .big {
+        -ms-flex-direction: column!important;
+        flex-direction: column!important;
+    }
+    .Features .up {
+        order:1;
+    }
+    .Features .down {
+        order:2;
+    }
+    .Features .box {
+        flex-basis:100%;
+    }
+	.Six-column .fixedHeight, .Search-results .fixedHeight, .Four-column .fixedHeight, .RelatedResources.Two-column .fixedHeight {
+		height: 75vw;
+	}
+	.Popular-resources .fixedHeight {
+		    height: 14vw;
+	}
+	.Two-column .fixedHeight {
+		height:51vw;
+	}
+	
+	.mobileTopPadding{
+		padding-top: 25px;
+	}
+	.facebookLink{
+		display: none;
+		margin-top: -200px
+	}
+	
+	
+
+}
+@media (max-width: 767px) {
+	.innerBgSlider {
+		height: 100%;
+		background:none;
+	}
+		.Four-schools .box {
+       
+    }
+    .LoginRegister {
+        order:2;
+    }
+    .Four-column {
+        justify-content: center!important;
+    }
+    .Four-column > .box {
+         flex-basis:90%;
+        margin-bottom:2rem;
+    }
+    .Six-column > .box {
+        flex-basis: 48%;
+    }
+    .Header .logo-container {
+        flex-basis:26%;
+        order:1
+    }
+    .Header .search-container {
+        flex-basis:70%;
+        order:2;
+    }
+    .Header .nav-container {
+        order:3;
+        margin-top:0.6rem;
+    }
+    .Slider .inner {
+        display:none!important;
+    }
+    .add-fav {
+        margin:1rem 0 0 2rem;
+
+    }
+    .Resource-detail .h1-title {
+        margin-bottom:0.7rem;
+    }
+    .Resource-detail .span-title {
+        display:block;
+    }
+    .Search-results .left {
+        order:2;
+    }
+    .Search-results .right {
+        order:1;
+        margin-bottom:2rem;
+    }
+    .Search-results {
+        -ms-flex-direction: column!important;
+        flex-direction: column!important;
+    }
+    .Top-results .box, .Search-results .box {
+        flex-basis:48%;
+    }
+    .Top-results .Four-column {
+        -ms-flex-pack: justify!important;
+        justify-content: space-between!important;
+    }
+	.mobileTopPadding{
+		padding-top: 25px;
+	}
+	.facebookLink{
+		position: absolute;
+		display: inline-block; 
+		top:-1px;
+		right:100px;
+	}
+	
+
+}
+@media (min-width: 576px) and (max-width: 991px) {
+	.Four-schools .box:nth-child(4) {
+		margin-bottom:0!important;
+	}
+	.facebookLink{
+		position: absolute;
+		display: inline-block; 
+		top:-1px;
+		right:200px;
+	}
+}
+
+
+
+@media (min-width: 576px) {
+    .mobile-only {
+        display:none;
+    }
+    .Header .nav-container {
+        flex-basis:100%;
+    }
+    .Header .mobile-btn {
+        display:none;
+    }
+    .Slider {
+        height:290px;
+    }
+	.Six-column .fixedHeight {
+		height:200px;
+	}
+	.RelatedResources.Two-column .fixedHeight {
+		height:351px;
+	}
+	.Four-column .fixedHeight {
+		height:376px;
+	}
+	.Popular-resources .fixedHeight {
+		height:83px;
+	}
+		.Two-column .fixedHeight {
+		height:283px;
+	}
+	.Search-results .fixedHeight, .Top-results .Four-column .fixedHeight  {
+		height:200px;
+	}
+	.facebookLink{
+		position: absolute;
+		display: inline-block; 
+		top:-1px;
+		right:200px;
+	}
+}
+
+
+@media (min-width: 768px) {
+	.phablet {
+        display:none;
+    }
+    .Header .logo {
+
+    }
+    .Header {
+
+    }
+        .Header .logo-container {
+            flex-basis:25%;
+        }
+        .Header .nav-container {
+            flex-basis:46%;
+        }
+
+        
+        .Header .nav-btn {
+            padding: 0.5rem 0;
+            position:relative;
+        }
+        .Header .nav-btn:hover {
+            text-decoration:none;
+        }
+        .Header .nav-item:hover .nav-btn:after, .Header .nav-item.nav-item-on .nav-btn:after {
+            border-bottom: 2px solid #f9b233;
+            bottom: -5px;
+            content: " ";
+            left: 0;
+            position: absolute;
+            right: 0;
+        }
+    .Four-column > .box {
+        flex-basis:48%;
+        margin-bottom:1.5rem;
+    }
+    .Six-column > .box {
+        flex-basis: 32%;
+    }
+    .Popular-resources .box {
+        flex-basis: 48%;
+    }
+    .Header .search-container {
+        flex-basis:100%;
+    }
+    .Slider {
+        height:400px;
+    }
+	.Six-column .fixedHeight, .RelatedResources.Two-column .fixedHeight {
+		height:180px;
+	}
+	.Four-column .fixedHeight, .Top-results .Four-column .fixedHeight {
+		height:271px;
+	}
+	.Popular-resources .fixedHeight {
+		height:54px;
+	}
+	.Two-column .fixedHeight {
+		height:383px;
+	}
+	.Search-results .fixedHeight {
+		height:176px;
+	}
+	.Three-columns .box {
+		flex-basis:48%;
+	}
+	.Three-columns.Video-container .box {
+		flex-basis:55.5%;
+	}
+	/*.Three-columns.Video-container .box {
+		flex-basis:31.5%;
+	}*/
+	.HomeSlider.Slider .inner {
+		flex-basis: 45%;
+	}
+	.HomeSlider .inner p {
+		width:100%;
+		font-size: 1rem;
+	}
+	.HomeSlider h4 {
+		font-size: 1.2rem;
+	}
+	.HomeSlider .h1-title {
+		font-size: 1.3rem!important;
+	}
+	.facebookLink{
+		position: absolute;
+		display: inline-block; 
+		top:-1px;
+		right:200px;
+	}
+}
+
+
+@media (min-width: 992px) {
+	.nav-container .spacer {
+		display:none;
+	}
+    .Six-column > .box {
+        flex-basis:15.3%;
+    }
+	.Two-column > .box {
+		flex-basis: 48.5%;
+	}
+    .Popular-resources .box {
+        flex-basis: 32%;
+    }
+    .Header .search-container {
+        flex-basis:30%;
+    }
+    .Header .logo-container {
+        flex-basis:16%;
+    }
+    .Four-column > .box {
+        flex-basis:23.5%;
+        margin-bottom: 0;
+    }
+    .Slider {
+        height:500px;
+    }
+    .tablet {
+        display:none;
+    }
+	.Six-column .fixedHeight, .RelatedResources.Two-column .fixedHeight {
+		height:118px;
+	}
+	.Four-column .fixedHeight, .Top-results .Four-column .fixedHeight {
+		height:178px;
+	}
+	.Popular-resources .fixedHeight {
+		height:49px;
+	}
+		.Two-column .fixedHeight {
+		height:250px;
+	}
+	.Search-results .fixedHeight {
+		height:237px;
+	}
+	.Top-results h2, .Search-results h2, .Filter-resources .h4-title {
+		font-weight:300;
+	}
+	.HomeSlider.Slider .inner {
+		flex-basis: 45%;
+	}
+	.HomeSlider .inner p {
+		width:100%;
+	}
+	.HomeSlider .h1-title {
+		font-size: 1.7rem;
+	}
+	.facebookLink{
+		position: absolute;
+		display: inline-block; 
+		top:-1px;
+		right:200px;
+	}
+
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+	.myAchievementBox .count {
+		font-size:55px;
+	}
+	.myAchievementBox .text {
+		font-size:0.9rem;
+	}
+	.Slider .inner {
+        flex-basis: 68%;
+    }
+	.PersonalisedPage .addBr, .PersonalisedPage .title  {
+		font-size:0.8rem!important;
+		line-height:1.15;
+		padding: 0 5px!important;
+	}
+	.videoWrapper {
+		width:80%;
+		margin: 0 auto;
+		padding-bottom: 45%;
+	}
+	.fixedHeightAchieve {
+		height: 90px;
+	}
+	.facebookLink{
+		position: absolute;
+		display: inline-block; 
+		top:-1px;
+		right:200px;
+	}
+		
+}
+
+@media (max-width: 991px) {
+	.Slider .h1-title {
+		    font-size: 2rem;
+	}
+    .Parents .testimonial-box {
+        width:100%;
+    }
+    .pc {
+        display:none;
+    }
+    .Parents .left {
+        margin-bottom:2rem;
+    }
+    .Parents .text-block {
+        width:100%;
+    }
+    .TourSlider .h1-title {
+        font-size:2rem;
+    }
+    .w-70 {
+        width:100%;
+        flex-basis:100%;
+    }
+	.marginDown {
+		margin-bottom:2rem;
+	}
+	.Four-schools .box:nth-child(2), .Four-schools .box:nth-child(3), .Four-schools .box:nth-child(4) {
+		margin-bottom:10px;
+	}
+	.fixedHeightAchieve {
+		height: 90px;
+	}
+	.facebookLink{
+		position: absolute;
+		display: inline-block; 
+		top:-1px;
+		right:200px;
+	}
+
+}
+
+
+@media (min-width: 1200px) {
+	.videoWrapper {
+		width:60%;
+		margin: 0 auto;
+		padding-bottom: 32%;
+	}
+	.PersonalisedPage .addBr, .PersonalisedPage .title  {
+		font-size:0.9rem!important;
+		padding: 0 5px!important;
+	}
+    .Slider {
+        height:730px;
+    }
+	.Six-column .fixedHeight, .RelatedResources.Two-column .fixedHeight {
+		height:140px;
+	}
+	.Four-column .fixedHeight, .Top-results .Four-column .fixedHeight {
+		height:213px;
+	}
+	.Popular-resources .fixedHeight {
+		height:58px;
+	}
+	.Two-column .fixedHeight {
+		height:298px;
+	}
+	.Search-results .fixedHeight {
+		height:186px;
+	}
+		.Three-columns .box {
+		flex-basis: 31.5%;
+	}
+	.HomeSlider.Slider .inner {
+		flex-basis: 45%;
+	}
+	.HomeSlider .inner p {
+		width:90%;
+	}
+	body .HomeSlider .inner h1 {
+		font-size:1.8rem!important;
+	}
+	.HomeSlider .inner p {
+		font-size:1.1rem;
+	}
+	.HomeSlider h4 {
+		font-size:1.5rem;
+	}
+	.fixedHeightAchieve {
+		height: 90px;
+	}
+	.fixedHeightRelated {
+		height: 140px;
+	}
+	.facebookLink{
+		position: absolute;
+		display: inline-block; 
+		top:-1px;
+		right:200px;
+	}
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .Header .logo-container {
+        margin-bottom: 1rem;
+    }
+	.HomeSlider .inner p {
+		width:90%;
+		font-size:0.9rem;
+	}
+    .Slider .inner {
+        flex-basis: 68%;
+    }
+    .Slider .action-btn {
+        font-size: 1rem;
+        padding: 0.8rem 4rem;
+    }
+    .Public .Header .nav-container {
+        order:3;
+        flex-basis:70%;
+        margin:0 auto;
+    }
+	.facebookLink{
+		position: absolute;
+		display: inline-block; 
+		top:-1px;
+		right:200px;
+	}
+	
+
+}
+
+
+@media (min-width: 1600px) {/*alex 2100*/
+	 .container {
+        width: 80%;
+		max-width: 1600px;
+    }
+	.container.yourAchievements {
+		max-width:1140px;
+	}
+
+	.facebookLink{
+		position: absolute;
+		display: inline-block; 
+		top:-1px;
+		right:200px;
+	}
+}
+
+
+@media (min-width: 2100px) {
+	
+	body .HomeSlider .inner h1 {
+		font-size:2.5rem!important;
+	}
+	.HomeSlider .inner p {
+		font-size:1.3rem;
+	}
+	.HomeSlider h4 {
+		font-size:1.6rem;
+	}
+	.HomeSlider.Slider .inner {
+		flex-basis: 35%;
+	}
+	.HomeSlider .inner p {
+		width:90%;
+	}
+	
+	.Resource-detail .container, .Resource-detail.container {
+		max-width:1140px!important;
+	}
+	.Features .box {
+		flex-basis:48%;
+	}
+	.Features .h2-title {
+		font-size:2.3rem;
+	}
+	.Features p {
+		font-size:1.3rem;
+		width:70%;
+	}
+	.Parents .left {	
+		flex-basis: 45%;
+	}
+	.Parents .right {
+		flex-basis: 55%;
+	}
+	.Parents .text-block  {
+		font-size:1.2rem;
+	}
+	.MiddleSlider .h2-title {
+		font-size:3rem;
+	}
+	.MiddleSlider p {
+		font-size:1.3rem;
+	}
+	.Slider .inner.w-50 {
+		flex-basis: 35%;
+		width: 35%!important;
+	}
+	.Three-columns .box img {
+		width:100%;
+	}
+	.Header .nav-item {
+		padding:0 1.5rem;
+	}
+	.Six-column .fixedHeight, .RelatedResources.Two-column .fixedHeight {
+		height:250px;
+	}
+	.Four-column .fixedHeight, .Top-results .Four-column .fixedHeight {
+		height:378px;
+	}
+	.Two-column .fixedHeight {
+		height:530px;
+	}
+	.Popular-resources .fixedHeight {
+		height:67px;
+	}
+	.Search-results .fixedHeight {
+		height:330px;
+	}
+    .Slider {
+        height:730px;
+    }
+    .container {
+		max-width: 2000px;
+    }
+	.container.yourAchievements {
+		max-width:1140px;
+	}
+    .Header .logo {
+        max-width:200px;
+    }
+    .Header .nav-btn {
+        font-size:1.3rem;
+    }
+    .Slider .h1-title {
+        font-size: 3rem;
+    }
+    .Topbar .nav-btn {
+        font-size: 1rem;
+    }
+    .Slider .text-block {
+        max-width:550px;
+        font-size:1.3rem;
+    }
+    .Slider .action-btn {
+        font-size:1.2rem;
+    }
+    .Body .h3-title {
+        font-size:2.7rem;
+    }
+    .Four-column .h5-title, .Six-column .h5-title, .Popular-resources .h5-title {
+        font-size: 1.4rem;
+    }
+    .Four-column .text-muted, .Six-column .text-muted, .Popular-resources .text-muted {
+        font-size: 1rem;
+    }
+    .Four-column .text-block {
+        font-size: 1.1rem;
+    }
+    .Popular-resources .view {
+        font-size: 1rem;
+    }
+    .Popular-resources .left {
+        flex-basis: 13%;
+    }
+    .Popular-resources .middle {
+        flex-basis: 66%;
+    }
+    .Popular-resources .h5-title {
+        margin-bottom: 1rem!important;
+    }
+    .Body .lh-1 {
+        line-height:2;
+    }
+    .Six-column .box.favorites .title {
+        font-size:1.4rem;
+    }
+    .Six-column .box.favorites .count {
+        font-size:1.4rem;
+    }
+    .Badge-detail .subtitle {
+        font-size:1.3rem;
+    }
+	.facebookLink{
+		position: absolute;
+		display: inline-block; 
+		top:-1px;
+		right:200px;
+	}
+
+}
