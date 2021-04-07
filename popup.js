@@ -23,7 +23,7 @@ var StartLessonPopupModule = (function () {
                 <div class="px-3">or</div>
                 <div class="delimitor-line"></div>
               </div>
-              <a href="##" class="btn btn-light mr-2 mb-3 mt-3">Start Lesson</a>
+              <a href="##" class="btn btn-light mr-2 mb-3 mt-3">Just Browsing</a>
               <a href="##" class="link-footer">Don’t show this message again. I will click START when I am ready.</a>
             </div>
             
