@@ -1,7 +1,10 @@
 $( document ).ready(function() {
   $('.popup-start-button').on('click', function(e) {
     e.preventDefault();
+    $('.elephango-static').remove();
+    $('.elephango-animation').removeClass('d-none');
     StartLessonPopupModule.init();
+   
   });
 });
 
